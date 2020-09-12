@@ -1,0 +1,92 @@
+#include<conio.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+struct Node{
+int data;
+struct Node* link;
+};
+
+
+struct Node* NewNode(){
+
+struct Node *t=(struct Node*)malloc(sizeof(struct Node));
+
+return(t);
+
+}
+void display(struct Node* temp){
+  while(temp!=NULL){
+
+    printf("[%d ]",temp->data );
+     printf("[%u ]",temp->link );
+    temp=temp->link;
+  }
+
+
+
+}
+
+void delNode(struct Node** start){
+  struct Node* ptr=*start;
+
+if (*start==NULL){
+  printf("empty node\n");
+}
+else{
+  ptr=ptr->link;
+  *start=ptr;
+  
+
+   }
+
+
+}
+void createNode(struct Node** start,int item){
+
+struct Node *temp=*start;
+
+if(*start==NULL){
+  temp=NewNode();
+  temp->data=item;
+temp->link=NULL;
+*start=temp;
+
+}
+
+else
+{
+while(temp->link !=NULL){
+  temp=temp->link;
+}
+
+temp->link=NewNode();
+temp=temp->link;
+temp->data=item;
+temp->link=NULL;
+
+
+
+}
+
+
+
+
+
+
+}
+int main(){
+struct Node *START=NULL;
+createNode(&START,67);
+createNode(&START,78);
+createNode(&START,7);
+createNode(&START,8);
+createNode(&START,18);
+createNode(&START,48);
+createNode(&START,88);
+
+delNode(&START);
+delNode(&START);
+
+display(START);
+  }
